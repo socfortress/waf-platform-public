@@ -64,7 +64,7 @@
     const ATTACKS = [
       { name: "SQL injection",        cat: "CRS 942xxx", path: "/search?q=1' OR '1'='1' -- -" },
       { name: "SQL injection (UNION)",cat: "CRS 942xxx", path: "/search?q=-1 UNION SELECT username,password FROM users -- -" },
-      { name: "Reflected XSS",        cat: "CRS 941xxx", path: "/search?q=<script>alert(document.cookie)</script>" },
+      { name: "Reflected XSS",        cat: "CRS 941xxx", path: "/search?q=<script>alert(document.cookie)<\/script>" },
       { name: "Path traversal / LFI", cat: "CRS 930xxx", path: "/download?file=../../../../etc/passwd" },
       { name: "Command injection",    cat: "CRS 932xxx", path: "/ping?host=127.0.0.1;cat /etc/passwd" },
       { name: "Remote file include",  cat: "CRS 931xxx", path: "/download?file=http://169.254.169.254/latest/meta-data/" },
