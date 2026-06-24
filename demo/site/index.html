@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Threat Library — protected by WAF Platform</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <div class="logo">TL</div>
+      <div>
+        <h1>SOC Threat Library</h1>
+        <p>A demo app sitting behind the WAF Management Platform</p>
+      </div>
+      <div class="spacer"></div>
+      <span class="badge green">🔒 Served through the WAF</span>
+    </header>
+
+    <h2>Internal knowledge base</h2>
+    <p class="lede">
+      Analysts search this library for attack signatures and payloads. Every request
+      first passes through the WAF — including the search below.
+    </p>
+
+    <div class="card">
+      <h3>Search the library</h3>
+      <p class="sub">Try a normal query, then try pasting a payload an analyst might look up.</p>
+      <form class="search" action="/library" method="get">
+        <input type="text" name="term" placeholder="e.g. credential stuffing  —  or  powershell -enc base64 payload" autocomplete="off" />
+        <button class="btn primary" type="submit">Search</button>
+      </form>
+      <p class="hint">
+        This form sends <code>GET /library?term=…</code> through the WAF. A legitimate analyst
+        query that <em>looks</em> like an attack — e.g. searching for a
+        <code>powershell -enc</code> indicator — trips a CRS rule. That's the false positive
+        we fix live with a scoped exclusion, without weakening protection elsewhere.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Want to see it block real attacks?</h3>
+      <p class="sub">Open the attack console and fire common web attacks at this app.</p>
+      <a class="btn primary" href="/attack.html">Open Attack Console →</a>
+    </div>
+
+    <footer>
+      WAF Management Platform · Caddy + Coraza + OWASP CRS ·
+      <a href="https://github.com/socfortress/waf-platform-public">GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

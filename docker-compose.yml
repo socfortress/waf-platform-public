@@ -22,6 +22,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    # Lets the WAF proxy to apps running on the Docker host (e.g. an nginx
+    # upstream) via http://host.docker.internal:<port>. See demo/README.md.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - coraza-rules:/etc/coraza/rules
       - caddy-config:/etc/caddy

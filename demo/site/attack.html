@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Attack Console — WAF Platform demo</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <div class="logo">⚔︎</div>
+      <div>
+        <h1>Attack Console</h1>
+        <p>Fire common web attacks at the protected app and watch the WAF respond</p>
+      </div>
+      <div class="spacer"></div>
+      <a class="btn ghost" href="/">← Back to app</a>
+    </header>
+
+    <p class="lede">
+      Each button sends a real HTTP request to this same origin — so it passes through the WAF
+      before it could ever reach the backend. <b style="color:var(--red)">BLOCKED (403)</b> means
+      Coraza + OWASP CRS stopped it. <b style="color:var(--green)">ALLOWED (200)</b> means it
+      reached the app.
+    </p>
+
+    <div class="stats">
+      <div class="stat blocked"><b id="n-blocked">0</b> blocked</div>
+      <div class="stat allowed"><b id="n-allowed">0</b> allowed</div>
+      <div class="stat"><b id="n-total">0</b> total sent</div>
+    </div>
+
+    <div class="card">
+      <h3>Malicious traffic</h3>
+      <p class="sub">These should all be blocked while the site is in blocking mode.</p>
+      <div class="grid" id="attacks"></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn danger" id="run-all">▶ Run all attacks</button>
+        <button class="btn ghost" id="clear">Clear log</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Legitimate traffic</h3>
+      <p class="sub">The WAF must let real users through. The last one is the analyst false positive.</p>
+      <div class="grid" id="legit"></div>
+    </div>
+
+    <div class="card">
+      <h3>Activity log</h3>
+      <p class="sub">Newest first. Cross-reference these in the platform's Logs view.</p>
+      <div id="log"></div>
+    </div>
+
+    <footer>
+      Tip: header-based checks (e.g. scanner User-Agents) can't be set from browser JS —
+      use the <code>curl</code> examples in <code>demo/README.md</code> for those.
+    </footer>
+  </div>
+
+  <script>
+    // Each test hits THIS origin with a relative URL, so it flows through the WAF.
+    const ATTACKS = [
+      { name: "SQL injection",        cat: "CRS 942xxx", path: "/search?q=1' OR '1'='1' -- -" },
+      { name: "SQL injection (UNION)",cat: "CRS 942xxx", path: "/search?q=-1 UNION SELECT username,password FROM users -- -" },
+      { name: "Reflected XSS",        cat: "CRS 941xxx", path: "/search?q=<script>alert(document.cookie)</script>" },
+      { name: "Path traversal / LFI", cat: "CRS 930xxx", path: "/download?file=../../../../etc/passwd" },
+      { name: "Command injection",    cat: "CRS 932xxx", path: "/ping?host=127.0.0.1;cat /etc/passwd" },
+      { name: "Remote file include",  cat: "CRS 931xxx", path: "/download?file=http://169.254.169.254/latest/meta-data/" },
+    ];
+
+    const LEGIT = [
+      { name: "Normal search",            cat: "should be ALLOWED", path: "/library?term=credential stuffing" },
+      { name: "Normal page load",         cat: "should be ALLOWED", path: "/library?term=phishing playbook" },
+      { name: "Analyst IOC lookup",       cat: "false positive → fix with exclusion (CRS 932120)", path: "/library?term=powershell -enc base64 payload" },
+    ];
+
+    let blocked = 0, allowed = 0, total = 0;
+    const $ = (id) => document.getElementById(id);
+
+    function render(list, mount, danger) {
+      list.forEach((t, i) => {
+        const el = document.createElement("button");
+        el.className = "attack";
+        el.innerHTML = `<span class="name">${t.name}</span>
+                        <span class="cat">${t.cat}</span>
+                        <code>${t.path.replace(/</g,"&lt;")}</code>`;
+        el.onclick = () => fire(t);
+        mount.appendChild(el);
+      });
+    }
+
+    async function fire(t) {
+      let status, verdict, cls;
+      try {
+        const res = await fetch(t.path, { method: "GET", redirect: "manual" });
+        status = res.status;
+        if (status === 403) { verdict = "BLOCKED"; cls = "blocked"; blocked++; }
+        else if (status >= 200 && status < 400) { verdict = "ALLOWED"; cls = "allowed"; allowed++; }
+        else { verdict = "HTTP " + status; cls = "error"; }
+      } catch (e) {
+        status = "—"; verdict = "ERROR"; cls = "error";
+      }
+      total++;
+      logEntry(verdict, cls, t, status);
+      updateStats();
+    }
+
+    function logEntry(verdict, cls, t, status) {
+      const e = document.createElement("div");
+      e.className = "entry " + cls;
+      e.innerHTML = `<div class="verdict">${verdict}</div>
+                     <div class="what">${t.name} <span class="cat">· ${t.cat}</span>
+                       <code>GET ${t.path.replace(/</g,"&lt;")}</code></div>
+                     <div class="status">${status}</div>`;
+      $("log").prepend(e);
+    }
+
+    function updateStats() {
+      $("n-blocked").textContent = blocked;
+      $("n-allowed").textContent = allowed;
+      $("n-total").textContent = total;
+    }
+
+    $("run-all").onclick = async () => {
+      for (const t of ATTACKS) { await fire(t); await new Promise(r => setTimeout(r, 350)); }
+    };
+    $("clear").onclick = () => {
+      $("log").innerHTML = ""; blocked = allowed = total = 0; updateStats();
+    };
+
+    render(ATTACKS, $("attacks"), true);
+    render(LEGIT, $("legit"), false);
+  </script>
+</body>
+</html>
