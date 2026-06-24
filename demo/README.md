@@ -133,6 +133,28 @@ switch to blocking once you've tuned exclusions.
 
 ---
 
+## Troubleshooting
+
+**WAF returns 502, logs show `dial tcp 172.17.0.1:8088: connect: connection refused`.**
+nginx isn't listening on an interface the WAF container can reach. It must bind
+all interfaces (`listen 8088;`), not loopback (`listen 127.0.0.1:8088;`) — the
+host's loopback is not reachable from containers. Fix and reload:
+```bash
+sudo sed -i 's/listen 127.0.0.1:8088/listen 8088/' /etc/nginx/sites-available/waf-demo
+sudo nginx -t && sudo systemctl reload nginx
+curl -s -o /dev/null -w "%{http_code}\n" http://172.17.0.1:8088/   # expect 200
+```
+
+**Keep port 8088 private (optional).** The demo app holds no secrets, but if you
+don't want it reachable from the internet, allow only the Docker bridge to reach
+it (do not enable a firewall without first allowing SSH):
+```bash
+sudo ufw allow OpenSSH
+sudo ufw allow 80/tcp && sudo ufw allow 443/tcp && sudo ufw allow 8443/tcp
+sudo ufw allow from 172.16.0.0/12 to any port 8088 proto tcp
+sudo ufw --force enable
+```
+
 ## Local-only variant (no public domain)
 
 Without a public domain you can't get a real Let's Encrypt cert. Two options:

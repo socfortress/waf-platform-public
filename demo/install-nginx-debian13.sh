@@ -38,12 +38,16 @@ for f in "${SITE_FILES[@]}"; do
   curl -fsSL "${REPO_RAW}/${f}" -o "${WEBROOT}/${f}" || err "could not download ${f} from ${REPO_RAW}"
 done
 
-echo "==> Writing nginx site config (listening on 127.0.0.1:${PORT}) ..."
+echo "==> Writing nginx site config (listening on :${PORT}) ..."
 cat > /etc/nginx/sites-available/waf-demo <<NGINX
 # Demo upstream for the WAF Management Platform.
-# Bound to loopback only: the app is reachable solely through the WAF.
+# Listens on all interfaces so the WAF container can reach it via the Docker
+# host gateway (http://host.docker.internal:${PORT}). A loopback-only bind
+# (127.0.0.1) is NOT reachable from containers and causes a 502 at the WAF.
+# This is a throwaway demo app with no secrets; to keep port ${PORT} off the
+# public internet, restrict it with a firewall (see demo/README.md).
 server {
-    listen 127.0.0.1:${PORT} default_server;
+    listen ${PORT} default_server;
     server_name _;
     root ${WEBROOT};
     index index.html;
@@ -73,7 +77,8 @@ systemctl restart nginx
 
 echo ""
 echo "============================================================"
-echo " Demo target is up:  http://127.0.0.1:${PORT}/  (loopback)"
+echo " Demo target is up:  http://<host>:${PORT}/"
+echo " Reachable from the WAF container as host.docker.internal:${PORT}"
 echo "============================================================"
 echo ""
 echo "Next: register it in the WAF Management Platform as a site."
