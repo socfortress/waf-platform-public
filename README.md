@@ -7,6 +7,12 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
+## 📺 Watch the demo
+
+Deploy the WAF, get automatic TLS, block live attacks, and tune a false positive — in about 10 minutes:
+
+[![Watch the demo on YouTube](https://img.youtube.com/vi/ZvjfPXP3X30/maxresdefault.jpg)](https://youtu.be/ZvjfPXP3X30)
+
 ---
 
 ## Architecture
