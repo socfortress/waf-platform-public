@@ -115,19 +115,28 @@ docker compose ps
 
 ---
 
-## Protecting your own app
+## Protecting your app
 
-By default the WAF proxies a dummy `http-echo` upstream so you can verify the
-stack end-to-end. To protect a real application, add it as a site in the admin
-UI and point the WAF at your upstream. See the in-app Operations guidance for
-details.
+A fresh install has **no sites configured** — Caddy listens on 80/443 but does
+not proxy anything yet (a bare request to `http://localhost/` returns an empty
+`200`). You configure protection from the admin UI:
 
-Verify the WAF is live:
+1. Log in (see above) and add your upstream application as a **site**.
+2. Choose **detection** mode (log only) or **blocking** mode (reject attacks).
+3. The WAF then proxies and protects that site.
+
+### Optional: verify against the bundled test upstream
+
+The stack includes a throwaway `http-echo` container you can use as a target.
+Add a test site in **blocking** mode pointing at `http-echo:5678`, then:
 
 ```bash
-curl http://localhost/                                   # → upstream-ok
-curl -s -o /dev/null -w "%{http_code}" "http://localhost/?id=1+OR+1%3D1"   # → 403 (SQLi blocked)
+curl http://localhost/                                       # → upstream-ok
+curl -s -o /dev/null -w "%{http_code}\n" "http://localhost/?id=1+OR+1%3D1"   # → 403 (SQLi blocked)
 ```
+
+A benign request returns `200`; the SQLi probe returns `403` once the site is in
+blocking mode.
 
 ---
 
