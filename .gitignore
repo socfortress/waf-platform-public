@@ -1,0 +1,11 @@
+# Secrets — never commit
+.env
+*.env.local
+*.env.production
+*.env.staging
+
+# User-supplied GeoIP database (MaxMind — do not redistribute)
+GeoLite2-City.mmdb
+*.mmdb
+
+.DS_Store

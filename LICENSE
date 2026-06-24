@@ -1,0 +1,45 @@
+WAF Management Platform — End User License Agreement
+
+Copyright (c) 2026 SOCFortress. All rights reserved.
+
+This repository contains deployment configuration and documentation for the
+WAF Management Platform ("the Software"). The Software itself is distributed
+only as prebuilt container images. The Software is proprietary and is licensed,
+not sold.
+
+1. GRANT OF LICENSE
+   SOCFortress grants you a non-exclusive, non-transferable, revocable license
+   to download, run, and use the Software and these deployment files for your
+   own internal or commercial use, subject to the terms below.
+
+2. RESTRICTIONS
+   You may NOT:
+   (a) redistribute, resell, sublicense, rent, lease, or host the container
+       images as a service for third parties, except as expressly permitted in
+       writing by SOCFortress;
+   (b) reverse engineer, decompile, disassemble, or otherwise attempt to derive
+       the source code of the Software, except to the extent this restriction is
+       prohibited by applicable law;
+   (c) remove or alter any proprietary notices or branding;
+   (d) use the Software to provide a competing product.
+
+3. THIRD-PARTY COMPONENTS
+   The Software incorporates third-party open-source components (including
+   Caddy, Coraza, the OWASP Core Rule Set, PostgreSQL, Redis, and others), each
+   of which is governed by its own license. Nothing in this Agreement limits
+   your rights under those licenses. The GeoLite2 database is a product of
+   MaxMind, Inc. and is subject to MaxMind's license; it is not distributed with
+   the Software and must be obtained by you directly.
+
+4. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+5. LIMITATION OF LIABILITY
+   IN NO EVENT SHALL SOCFORTRESS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+   LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+   OR OTHER DEALINGS IN THE SOFTWARE.
+
+For commercial licensing, redistribution rights, or support, contact
+SOCFortress at https://www.socfortress.co.

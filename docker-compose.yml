@@ -1,0 +1,202 @@
+# =============================================================================
+# WAF Management Platform — Public Deployment Compose
+#
+# Runs the platform from prebuilt images on GitHub Container Registry.
+# No source code or build context is required.
+#
+#   1. cp .env.example .env   (then fill in every CHANGE_ME value)
+#   2. Provide a GeoLite2-City.mmdb  (see README → GeoIP setup)
+#   3. docker compose up -d
+#
+# Pin a specific version by setting WAF_IMAGE_TAG in your .env.
+# =============================================================================
+
+services:
+
+  # ---------------------------------------------------------------------------
+  # Caddy + Coraza: WAF engine and reverse proxy
+  # ---------------------------------------------------------------------------
+  caddy-waf:
+    image: ghcr.io/socfortress/waf-caddy:${WAF_IMAGE_TAG:-latest}
+    container_name: caddy-waf
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - coraza-rules:/etc/coraza/rules
+      - caddy-config:/etc/caddy
+      - coraza-custom:/etc/coraza/custom
+      - crs-data:/etc/coraza/crs-rules         # live CRS dir (seeded by admin-api)
+      - coraza-logs:/var/log/coraza
+    networks:
+      - waf-internal
+    depends_on:
+      http-echo:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://localhost:2019/config/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Dummy upstream — replace with your real protected app(s)
+  # ---------------------------------------------------------------------------
+  http-echo:
+    image: hashicorp/http-echo:0.2.3
+    container_name: http-echo
+    command: ["-text=upstream-ok"]
+    user: "65534:65534"
+    networks:
+      - waf-internal
+    healthcheck:
+      test: ["NONE"]
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 64M
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # FastAPI Admin API
+  # ---------------------------------------------------------------------------
+  admin-api:
+    image: ghcr.io/socfortress/waf-admin-api:${WAF_IMAGE_TAG:-latest}
+    container_name: admin-api
+    env_file: .env
+    volumes:
+      - tls-certs:/certs                       # shared TLS cert volume (see admin-ui)
+      # GeoLite2 DB is user-supplied — MaxMind licensing forbids redistribution.
+      # Point GEOIP_DB_PATH at your downloaded GeoLite2-City.mmdb (see README).
+      - ${GEOIP_DB_PATH:-./GeoLite2-City.mmdb}:/etc/geoip-bundle/GeoLite2-City.mmdb:ro
+      - geoip-data:/etc/geoip
+      - coraza-rules:/etc/coraza/rules
+      - caddy-config:/etc/caddy
+      - coraza-custom:/etc/coraza/custom
+      - crs-data:/etc/coraza/crs-rules         # live CRS dir (seeded from image bundle)
+      - coraza-logs:/var/log/coraza
+    networks:
+      - waf-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O-", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # React Admin UI (served by Nginx, HTTPS on 8443)
+  # ---------------------------------------------------------------------------
+  admin-ui:
+    image: ghcr.io/socfortress/waf-admin-ui:${WAF_IMAGE_TAG:-latest}
+    container_name: admin-ui
+    ports:
+      - "8443:8080"
+    volumes:
+      - tls-certs:/etc/nginx/certs            # shared with admin-api for cert upload + reload
+    networks:
+      - waf-internal
+    depends_on:
+      admin-api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--no-check-certificate", "-O-", "https://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL 16
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:16.3-alpine
+    container_name: postgres
+    env_file: .env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - waf-internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Redis 7
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7.2.5-alpine
+    container_name: redis
+    user: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    networks:
+      - waf-internal
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+    restart: unless-stopped
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  waf-internal:
+    driver: bridge
+
+# =============================================================================
+# Named volumes
+# =============================================================================
+volumes:
+  coraza-rules:
+  coraza-custom:
+  coraza-logs:
+  caddy-config:
+  crs-data:
+  geoip-data:
+  postgres-data:
+  redis-data:
+  tls-certs:
