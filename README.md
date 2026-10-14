@@ -184,4 +184,4 @@ docker compose down -v      # stop AND delete all data volumes — destructive
 
 - **License:** see [LICENSE](LICENSE).
 - **Issues / questions:** open an issue on this repository.
-- Commercial support is available from [SOCFortress](https://www.socfortress.co).
+- Commercial support is available from [SOCFortress](https://www.socfortress.co/solutions/professional-services).
