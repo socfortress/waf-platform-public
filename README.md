@@ -84,7 +84,7 @@ Edit `.env` and replace every `CHANGE_ME` value:
 
 Optional — email alerts: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`.
 
-Optional — pin a version: set `WAF_IMAGE_TAG` to a release tag (e.g. `v1.0.0`) instead of `latest`.
+Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.18` for release `v1.0.18`), instead of `latest`.
 
 ### 3. GeoIP setup
 
