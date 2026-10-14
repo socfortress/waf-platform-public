@@ -51,6 +51,30 @@ services:
     restart: unless-stopped
 
   # ---------------------------------------------------------------------------
+  # Rule testing sandbox (Rules → Sandbox): a second Caddy + Coraza that only
+  # answers test requests from the admin API. It never proxies anywhere, has no
+  # published ports, and testing never reloads caddy-waf. Optional — without it
+  # the Sandbox reports itself unavailable and nothing else is affected.
+  # ---------------------------------------------------------------------------
+  waf-sandbox:
+    image: ghcr.io/socfortress/waf-caddy:${WAF_IMAGE_TAG:-latest}
+    container_name: waf-sandbox
+    # Start empty; the admin API pushes the config for each test.
+    command: ["caddy", "run"]
+    environment:
+      CADDY_ADMIN: "0.0.0.0:2019"   # reachable on waf-internal only (no ports published)
+    volumes:
+      - crs-data:/etc/coraza/crs-rules:ro
+    networks:
+      - waf-internal
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
   # Dummy upstream — replace with your real protected app(s)
   # ---------------------------------------------------------------------------
   http-echo:
