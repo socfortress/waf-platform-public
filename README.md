@@ -49,6 +49,7 @@ Deploy the WAF, get automatic TLS, block live attacks, and tune a false positive
 - **Authentication** with TOTP 2FA and role-based access control.
 - **Log viewer** — searchable, PostgreSQL-backed request/blocking logs with GeoIP enrichment.
 - **Alerting** — email notifications on configurable conditions.
+- **IP reputation feeds** — import public or licensed IP/CIDR lists, inspect saved entries, and choose Off, Observe, or Block per site. Lookups run locally in Caddy.
 
 ---
 
@@ -84,7 +85,7 @@ Edit `.env` and replace every `CHANGE_ME` value:
 
 Optional — email alerts: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`.
 
-Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.18` for release `v1.0.18`), instead of `latest`.
+Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.27` for release `v1.0.27`), instead of `latest`.
 
 ### 3. GeoIP setup
 
@@ -146,6 +147,18 @@ blocking mode.
 
 ---
 
+## IP reputation feeds (1.0.27 and later)
+
+After updating both this Compose file and the application images, open **IP Reputation** in the admin UI. Add a public HTTPS IP/CIDR list or use a source preset, refresh it, then inspect the saved entries with **View IPs**. On each protected site, start with **Observe** to check matches in Caddy access logs; switch to **Block** when ready. Matched requests then receive HTTP 403. You can also set site-specific IP/CIDR exceptions. The feed snapshot is shared between the admin API and Caddy through the `reputation-data` volume, so requests do not wait for a feed provider.
+
+- **Spamhaus DROP IPv4/IPv6:** public presets that need no account or API key. They refresh at most once every 24 hours and start disabled. Review [Spamhaus's DROP fair-use terms](https://www.spamhaus.org/blocklists/drop-fair-use-policy/) for your use.
+- **CrowdSec raw IP list:** create a Raw IP List integration in CrowdSec Console, subscribe it to the blocklists available on your plan, and enter its integration URL plus the one-time username and password. The preset refreshes daily. A CrowdSec API key from a Remediation Component integration is a different credential and does not belong in the Basic Auth fields.
+- **Other providers:** HTTPS downloadable line lists or JSON lists can be added with an optional `Authorization` or `X-*` header. Follow each provider's license and rate limits. Query-only reputation APIs are not supported by this release.
+
+Configure **WAF Config → Trusted proxy IPs** if a load balancer or CDN connects directly to Caddy, so the reputation lookup uses the real client IP. Feed failures keep the last good entries only until their stale deadline; expired entries stop matching. Reputation matches appear in **Caddy access logs**; pre-Coraza blocks do not yet appear in the platform's WAF Logs or alerts. See [IP reputation setup and limits](docs/ip-reputation.md).
+
+---
+
 ## Updating
 
 ```bash
@@ -153,7 +166,7 @@ docker compose pull        # fetch the latest images (or your pinned WAF_IMAGE_T
 docker compose up -d        # recreate changed containers
 ```
 
-Your data (Postgres, Redis, rules, certs) lives in named Docker volumes and
+Your data (Postgres, Redis, rules, certs, reputation snapshots) lives in named Docker volumes and
 survives updates.
 
 ---
