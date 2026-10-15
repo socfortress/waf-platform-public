@@ -32,6 +32,7 @@ services:
       - coraza-custom:/etc/coraza/custom
       - crs-data:/etc/coraza/crs-rules         # live CRS dir (seeded by admin-api)
       - coraza-logs:/var/log/coraza
+      - reputation-data:/etc/reputation:ro     # locally matched feed snapshot
     networks:
       - waf-internal
     depends_on:
@@ -111,6 +112,7 @@ services:
       - coraza-custom:/etc/coraza/custom
       - crs-data:/etc/coraza/crs-rules         # live CRS dir (seeded from image bundle)
       - coraza-logs:/var/log/coraza
+      - reputation-data:/etc/reputation        # atomically published feed snapshot
     networks:
       - waf-internal
     depends_on:
@@ -228,3 +230,4 @@ volumes:
   postgres-data:
   redis-data:
   tls-certs:
+  reputation-data:
