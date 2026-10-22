@@ -7,19 +7,22 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.32 — TCP/UDP forwarding
+## New release: v1.0.33 — Enforce HTTPS for TLS sites
 
-[v1.0.32 is available](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.32)
-with **TCP/UDP Services** for raw forwarding through Caddy. Manage one upstream
-per listener in the UI/API and publish each port explicitly in Docker Compose.
-TLS/STARTTLS passes through to the upstream; HTTP WAF policies do not apply to
-raw traffic. SNI routing and TLS termination are outside this MVP.
+[v1.0.33 is available](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.33)
+with a fix for [issue #28](https://github.com/socfortress/waf-platform-public/issues/28).
+Sites using uploaded certificates or Let's Encrypt now redirect HTTP requests to
+HTTPS with **308 Permanent Redirect**, preserving the path and query string.
+HTTP-only sites remain supported, and ACME HTTP-01 challenges continue to work.
+The redirect is independent of the Security headers / HSTS setting.
 
-See the [TCP/UDP deployment guide](docs/tcp-udp-services.md),
-[Compose override example](docker-compose.streams.example.yml), and
-[release/rollback instructions](docs/releases/v1.0.32.md).
+See the [upgrade and rollback instructions](docs/releases/v1.0.33.md), especially
+if an external load balancer currently connects to a TLS-enabled site over HTTP.
+No database migration is added by this release.
 
-This includes the Coraza security upgrade and optional
+This includes the [TCP/UDP forwarding](docs/tcp-udp-services.md) from v1.0.32,
+with [explicit Docker port publishing](docker-compose.streams.example.yml),
+and the Coraza security upgrade and optional
 [PHP2Shell mitigation pack](rule-packs/php2shell/README.md) from v1.0.31.
 The pack remains opt-in; upgrading images does not enable its rules.
 
@@ -106,7 +109,7 @@ Edit `.env` and replace every `CHANGE_ME` value:
 
 Optional — email alerts: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`.
 
-Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.32` for release `v1.0.32`), instead of `latest`.
+Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.33` for release `v1.0.33`), instead of `latest`.
 
 ### 3. GeoIP setup
 
