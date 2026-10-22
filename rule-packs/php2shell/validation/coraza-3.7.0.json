@@ -1,0 +1,1865 @@
+{
+  "engine": "3.7.0",
+  "complete_php2shell_protection": false,
+  "test_body_budget": 4096,
+  "cases": 228,
+  "passed": 228,
+  "results": [
+    {
+      "port": 8080,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "ordinary_upload",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "ordinary_upload",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "nesting_11",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "nesting_11",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "nesting_13",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "nesting_13",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_49_repeated_False",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_49_repeated_False",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_49_repeated_True",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_49_repeated_True",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_50_repeated_False",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_50_repeated_False",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_50_repeated_True",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_50_repeated_True",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_51_repeated_False",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_51_repeated_False",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_51_repeated_True",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "empty_files_51_repeated_True",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "header_lines_99",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "header_lines_99",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "header_lines_100",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "header_lines_100",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "header_lines_101",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "header_lines_101",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "repeat_field_parts_101",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "repeat_field_parts_101",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "malformed_part",
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "malformed_part",
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "truncated_multipart",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "Coraza 3.7.0 fails to flag this truncated multipart body; uploads profile not recommended"
+    },
+    {
+      "port": 8080,
+      "case": "truncated_multipart",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "Coraza 3.7.0 fails to flag this truncated multipart body; uploads profile not recommended"
+    },
+    {
+      "port": 8080,
+      "case": "progress_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8080,
+      "case": "progress_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8080,
+      "case": "progress_custom_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8080,
+      "case": "progress_custom_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8080,
+      "case": "json_control",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "json_control",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "urlencoded_control",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "urlencoded_control",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "decoded_size_4095",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "decoded_size_4095",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "decoded_size_4096",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "decoded_size_4096",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "duplicate_content_type",
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "duplicate_content_type",
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "mixed_case",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "mixed_case",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "unscoped_host",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "unscoped_host",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "host_suffix_not_scoped",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "host_suffix_not_scoped",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "host_case_port",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "host_case_port",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "host_trailing_dot",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "host_trailing_dot",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "extensionless",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "extensionless",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8080,
+      "case": "acme_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8080,
+      "case": "acme_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8080,
+      "case": "dcv_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8080,
+      "case": "dcv_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8081,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "ordinary_upload",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "ordinary_upload",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "nesting_11",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "nesting_11",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "nesting_13",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "nesting_13",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_49_repeated_False",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_49_repeated_False",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_49_repeated_True",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_49_repeated_True",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_50_repeated_False",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_50_repeated_False",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_50_repeated_True",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_50_repeated_True",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_51_repeated_False",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_51_repeated_False",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_51_repeated_True",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "empty_files_51_repeated_True",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "header_lines_99",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "header_lines_99",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "header_lines_100",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "header_lines_100",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "header_lines_101",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "header_lines_101",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "repeat_field_parts_101",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "repeat_field_parts_101",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "malformed_part",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "malformed_part",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "truncated_multipart",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "truncated_multipart",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "progress_known_gap",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "progress_known_gap",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "progress_custom_known_gap",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "progress_custom_known_gap",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "json_control",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "json_control",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "urlencoded_control",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "urlencoded_control",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "decoded_size_4095",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "decoded_size_4095",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "decoded_size_4096",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "decoded_size_4096",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "duplicate_content_type",
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "duplicate_content_type",
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "mixed_case",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "mixed_case",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "unscoped_host",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "unscoped_host",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "host_suffix_not_scoped",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "host_suffix_not_scoped",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "host_case_port",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "host_case_port",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "host_trailing_dot",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "host_trailing_dot",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "extensionless",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "extensionless",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8081,
+      "case": "acme_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8081,
+      "case": "acme_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8081,
+      "case": "dcv_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8081,
+      "case": "dcv_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8082,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8082,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8082,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8082,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8082,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8082,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8083,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8083,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8083,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8083,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8083,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8083,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "inspection or enforcement disabled"
+    },
+    {
+      "port": 8084,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8084,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8084,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8084,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8084,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8084,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "ordinary_upload",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "ordinary_upload",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "nesting_11",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "nesting_11",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "nesting_13",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "nesting_13",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_49_repeated_False",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_49_repeated_False",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_49_repeated_True",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_49_repeated_True",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_50_repeated_False",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_50_repeated_False",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_50_repeated_True",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_50_repeated_True",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_51_repeated_False",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_51_repeated_False",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_51_repeated_True",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "empty_files_51_repeated_True",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "header_lines_99",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "header_lines_99",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "header_lines_100",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "header_lines_100",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "header_lines_101",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "header_lines_101",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "repeat_field_parts_101",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "repeat_field_parts_101",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "malformed_part",
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "malformed_part",
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "truncated_multipart",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "Coraza 3.7.0 fails to flag this truncated multipart body; uploads profile not recommended"
+    },
+    {
+      "port": 8085,
+      "case": "truncated_multipart",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "Coraza 3.7.0 fails to flag this truncated multipart body; uploads profile not recommended"
+    },
+    {
+      "port": 8085,
+      "case": "progress_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8085,
+      "case": "progress_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8085,
+      "case": "progress_custom_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8085,
+      "case": "progress_custom_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8085,
+      "case": "json_control",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "json_control",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "urlencoded_control",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "urlencoded_control",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "decoded_size_4095",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "decoded_size_4095",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "decoded_size_4096",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "decoded_size_4096",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "duplicate_content_type",
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "duplicate_content_type",
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "mixed_case",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "mixed_case",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "unscoped_host",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "unscoped_host",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "host_suffix_not_scoped",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "host_suffix_not_scoped",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "host_case_port",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "host_case_port",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "host_trailing_dot",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "host_trailing_dot",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "extensionless",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "extensionless",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8085,
+      "case": "acme_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8085,
+      "case": "acme_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8085,
+      "case": "dcv_known_gap",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8085,
+      "case": "dcv_known_gap",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true,
+      "known_gap": "documented uncovered input or engine-off path"
+    },
+    {
+      "port": 8086,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8086,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8086,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8086,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8086,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8086,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8087,
+      "case": "ordinary_form",
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8087,
+      "case": "ordinary_form",
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "port": 8087,
+      "case": "nesting_12",
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8087,
+      "case": "nesting_12",
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "port": 8087,
+      "case": "decoded_size_4097",
+      "chunked": false,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    },
+    {
+      "port": 8087,
+      "case": "decoded_size_4097",
+      "chunked": true,
+      "expected": 413,
+      "actual": 413,
+      "pass": true
+    }
+  ]
+}

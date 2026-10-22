@@ -9,3 +9,7 @@ GeoLite2-City.mmdb
 *.mmdb
 
 .DS_Store
+
+# Locally generated mitigation archives and Python bytecode
+rule-packs/*/dist/
+__pycache__/

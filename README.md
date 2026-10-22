@@ -7,6 +7,27 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
+## New release: v1.0.31 — PHP2Shell mitigation pack
+
+[v1.0.31 is available](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.31)
+with the optional **PHP2Shell mitigation pack 1.0.0**, following the separate
+[v1.0.30 Coraza security upgrade](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.30).
+Both platform versions use Coraza **3.8.1**, coraza-caddy **2.6.2** and Caddy **2.11.4**.
+You can upgrade directly to v1.0.31; no intermediate deployment is required.
+
+[Download, generate and install the pack](rule-packs/php2shell/README.md) for your
+hostnames through Advanced Rules. **Pulling the images does not install or enable
+these rules.** Choose `uploads` for sites needing multipart forms, or `strict`
+only for sites that need no multipart requests. These are partial mitigations;
+[patch PHP](https://www.php.net/archive/2026.php#2026-10-21-5) and read the
+[coverage limits](rule-packs/php2shell/README.md#coverage-limits).
+See [upgrade and rollback instructions](docs/releases/v1.0.31.md).
+
+To receive future release notifications, use **Watch → Custom → Releases** on
+[this public repository](https://github.com/socfortress/waf-platform-public),
+or subscribe to the [releases feed](https://github.com/socfortress/waf-platform-public/releases.atom).
+No private repository access is needed.
+
 ## 📺 Watch the demo
 
 Deploy the WAF, get automatic TLS, block live attacks, and tune a false positive — in about 10 minutes:
@@ -85,7 +106,7 @@ Edit `.env` and replace every `CHANGE_ME` value:
 
 Optional — email alerts: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`.
 
-Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.27` for release `v1.0.27`), instead of `latest`.
+Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.31` for release `v1.0.31`), instead of `latest`.
 
 ### 3. GeoIP setup
 
@@ -160,6 +181,12 @@ Configure **WAF Config → Trusted proxy IPs** if a load balancer or CDN connect
 ---
 
 ## Updating
+
+Read the [public release notes](https://github.com/socfortress/waf-platform-public/releases/latest)
+for compatibility changes and back up your database, rules and deployment settings.
+Update the deployment files with `git pull --ff-only`, preserving local customizations.
+Set `WAF_IMAGE_TAG` in `.env` to the desired release without its `v` prefix;
+`latest` follows new image publications. Upgrade Caddy, the sandbox, API and UI together.
 
 ```bash
 docker compose pull        # fetch the latest images (or your pinned WAF_IMAGE_TAG)

@@ -1,0 +1,468 @@
+{
+  "cases": 56,
+  "passed": 56,
+  "results": [
+    {
+      "case": "benign JSON",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "benign JSON",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON SQLi",
+      "port": 19090,
+      "chunked": false,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "case": "JSON SQLi",
+      "port": 19090,
+      "chunked": true,
+      "expected": 403,
+      "actual": 403,
+      "pass": true
+    },
+    {
+      "case": "malformed JSON",
+      "port": 19090,
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "malformed JSON",
+      "port": 19090,
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "ordinary multipart",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "ordinary multipart",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "truncated multipart",
+      "port": 19090,
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "truncated multipart",
+      "port": 19090,
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "query 999",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 999",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 999",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 999",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 999",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 999",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 1000",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 1000",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 1000",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 1000",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 1000",
+      "port": 19090,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 1000",
+      "port": 19090,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 1001",
+      "port": 19090,
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "query 1001",
+      "port": 19090,
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "form 1001",
+      "port": 19090,
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "form 1001",
+      "port": 19090,
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "JSON 1001",
+      "port": 19090,
+      "chunked": false,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "JSON 1001",
+      "port": 19090,
+      "chunked": true,
+      "expected": 400,
+      "actual": 400,
+      "pass": true
+    },
+    {
+      "case": "benign JSON",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "benign JSON",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON SQLi",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON SQLi",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "malformed JSON",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "malformed JSON",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "ordinary multipart",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "ordinary multipart",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "truncated multipart",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "truncated multipart",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 999",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 999",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 999",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 999",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 999",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 999",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 1000",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 1000",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 1000",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 1000",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 1000",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 1000",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 1001",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "query 1001",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 1001",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "form 1001",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 1001",
+      "port": 19091,
+      "chunked": false,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    },
+    {
+      "case": "JSON 1001",
+      "port": 19091,
+      "chunked": true,
+      "expected": 200,
+      "actual": 200,
+      "pass": true
+    }
+  ],
+  "image": "waf-platform-coraza-release:local",
+  "image_digest": "sha256:6f09c52b1aff8007115f40f55a91c3e6876fd3dee5de1ee1c8879fd776ca05a9",
+  "platform": "linux/amd64 (Docker emulation on arm64 host)",
+  "versions": {
+    "coraza": "3.8.1",
+    "coraza_caddy": "2.6.2",
+    "caddy": "2.11.4"
+  },
+  "backend_tests_passed": 43,
+  "engine_subtests_passed": 22,
+  "engine_tests_skipped": 1,
+  "skipped_reason": "CRM .credentials exclusion fixture is not applicable to managed CRS 4.7.0",
+  "fixture_sha256": "5240506fe4e9c21c2fe779c61c883a345d71212d86d9dc14cb5cbde61c509d10",
+  "build_info_sha256": "145dbc44856db574100d5aae8ea017a75bd59b4099cbb95ec207b1d5f7b686dc"
+}

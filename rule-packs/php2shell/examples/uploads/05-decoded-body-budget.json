@@ -1,0 +1,5 @@
+{
+  "name": "PHP2Shell 1.0.0: decoded-body-budget",
+  "description": "Partial mitigation. See pack README and coverage limits.",
+  "raw_conf_text": "SecRule REQUEST_HEADERS:Host \"@rx (?i)^(?:protected\\.example\\.invalid)\\.?(?::[0-9]+)?$\" \"id:AUTO,phase:2,t:none,deny,status:413,log,msg:'SOCFortress PHP2Shell decoded-body-budget',tag:'socfortress/php2shell/1.0.0',chain\"\nSecRule REQUEST_BODY_LENGTH \"@gt 8388608\" \"t:none\"\n"
+}

@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-22",
+  "platform_releases": [
+    "v1.0.30",
+    "v1.0.31"
+  ],
+  "pack_version": "1.0.0",
+  "pack_behavior_changed": false,
+  "public_source_and_archive_tests": {
+    "passed": 5,
+    "skipped": 1,
+    "skip_reason": "Platform backend source is not included in the public repository or archive"
+  },
+  "archive_sha256": "d7ce124664eb45c469a01921996ce9a6ae57a1b0ac3a5e202028fc2305a56995",
+  "archive_rebuild_deterministic": true,
+  "per_file_checksums_verified": true,
+  "public_documentation_relative_links_verified": true,
+  "public_documentation_private_repository_links": 0,
+  "crs_extraction_from_public_admin_api_image": {
+    "version": "1.0.30",
+    "files_matching_original_evidence": 45
+  },
+  "images": [
+    {
+      "image": "ghcr.io/socfortress/waf-caddy:1.0.30",
+      "digest": "sha256:72a3dae5d1290ea2a5354298c49752f88052d0de04780bd1efae33afb03e1fca",
+      "platform": "linux/amd64",
+      "anonymous_pull_manifest": true
+    },
+    {
+      "image": "ghcr.io/socfortress/waf-caddy:1.0.31",
+      "digest": "sha256:6e66e38898ae11c25a96c0b8bbea47f860b0bc614861ecc2f0fc04b259f358f1",
+      "platform": "linux/amd64",
+      "anonymous_pull_manifest": true
+    },
+    {
+      "image": "ghcr.io/socfortress/waf-admin-api:1.0.30",
+      "digest": "sha256:3554827463f96657cc4ec71f20bc88b5e15104c99a12bf823d36915c4f5b7205",
+      "platform": "linux/amd64",
+      "anonymous_pull_manifest": true
+    },
+    {
+      "image": "ghcr.io/socfortress/waf-admin-api:1.0.31",
+      "digest": "sha256:b39975cca16fc39c6caaa53355eb789934a2093fae8716e84954fd2cfef8434e",
+      "platform": "linux/amd64",
+      "anonymous_pull_manifest": true
+    },
+    {
+      "image": "ghcr.io/socfortress/waf-admin-ui:1.0.30",
+      "digest": "sha256:3a3e4b8aaa575ea40a2296c9abeacc29c61d868963130fbbcdcf47a78266e9c5",
+      "platform": "linux/amd64",
+      "anonymous_pull_manifest": true
+    },
+    {
+      "image": "ghcr.io/socfortress/waf-admin-ui:1.0.31",
+      "digest": "sha256:4af4a6883258fa46657b46e0eb0c8b52aab2dcddd72347420ef1a76f0beeea8e",
+      "platform": "linux/amd64",
+      "anonymous_pull_manifest": true
+    }
+  ],
+  "http_regressions": "Original 228 expected outcomes on 1.0.30 are retained unchanged in the pack; this documentation-only publication does not rerun or extend engine coverage."
+}
