@@ -7,12 +7,21 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.30 — Coraza security upgrade
+## New release: v1.0.31 — PHP2Shell mitigation pack
 
-[Public release and upgrade instructions](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.30):
-Coraza **3.8.1**, coraza-caddy **2.6.2**, Caddy **2.11.4**, and matching parser-error
-handling. Review the new 1,000-argument limit before upgrading high-volume APIs.
-See [release details and rollback](docs/releases/v1.0.30.md).
+[v1.0.31 is available](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.31)
+with the optional **PHP2Shell mitigation pack 1.0.0**, following the separate
+[v1.0.30 Coraza security upgrade](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.30).
+Both platform versions use Coraza **3.8.1**, coraza-caddy **2.6.2** and Caddy **2.11.4**.
+You can upgrade directly to v1.0.31; no intermediate deployment is required.
+
+[Download, generate and install the pack](rule-packs/php2shell/README.md) for your
+hostnames through Advanced Rules. **Pulling the images does not install or enable
+these rules.** Choose `uploads` for sites needing multipart forms, or `strict`
+only for sites that need no multipart requests. These are partial mitigations;
+[patch PHP](https://www.php.net/archive/2026.php#2026-10-21-5) and read the
+[coverage limits](rule-packs/php2shell/README.md#coverage-limits).
+See [upgrade and rollback instructions](docs/releases/v1.0.31.md).
 
 To receive future release notifications, use **Watch → Custom → Releases** on
 [this public repository](https://github.com/socfortress/waf-platform-public),
@@ -97,7 +106,7 @@ Edit `.env` and replace every `CHANGE_ME` value:
 
 Optional — email alerts: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`.
 
-Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.30` for release `v1.0.30`), instead of `latest`.
+Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.31` for release `v1.0.31`), instead of `latest`.
 
 ### 3. GeoIP setup
 

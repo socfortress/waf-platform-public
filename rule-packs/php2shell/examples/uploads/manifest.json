@@ -1,0 +1,17 @@
+{
+  "pack": "socfortress-php2shell",
+  "version": "1.0.0",
+  "profile": "uploads",
+  "hosts": [
+    "protected.example.invalid"
+  ],
+  "max_body_bytes": 8388608,
+  "coverage": "partial request-pattern mitigation; not a PHP patch",
+  "files": {
+    "01-duplicate-content-type.conf": "d3034a30c03dd380b3d8fd2ee72c5042c2eb0866b547b30fbaf5f2422b4b53e1",
+    "02-incomplete-or-invalid-body.conf": "44b517179053a568f257b6629217eb70637009974f0437f3edc9fe52799b4cd3",
+    "03-deep-multipart-name.conf": "27ac0b37c3194acd76ee1b5019956419e68f3c362869bcd2bc8da7023fb8d3cb",
+    "04-multipart-header-budget.conf": "0f508ea3d8271aaf5e5206b7d79647d0063ca90c6b11e74795b0550f80c89e4c",
+    "05-decoded-body-budget.conf": "9ef09b3d68e81495f4bc79b13c66e14bd0c2d78e5c502d0707493d82fc9302db"
+  }
+}

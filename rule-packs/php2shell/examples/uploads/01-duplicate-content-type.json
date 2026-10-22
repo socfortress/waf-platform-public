@@ -1,0 +1,5 @@
+{
+  "name": "PHP2Shell 1.0.0: duplicate-content-type",
+  "description": "Partial mitigation. See pack README and coverage limits.",
+  "raw_conf_text": "SecRule REQUEST_HEADERS:Host \"@rx (?i)^(?:protected\\.example\\.invalid)\\.?(?::[0-9]+)?$\" \"id:AUTO,phase:1,t:none,deny,status:400,log,msg:'SOCFortress PHP2Shell duplicate-content-type',tag:'socfortress/php2shell/1.0.0',chain\"\nSecRule &REQUEST_HEADERS:Content-Type \"@gt 1\" \"t:none\"\n"
+}
