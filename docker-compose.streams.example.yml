@@ -1,0 +1,9 @@
+# Copy to docker-compose.streams.yml and keep only the ports you intend to expose.
+# Use this override with every Compose deployment command. See docs/tcp-udp-services.md.
+# No additional ports are published by docker-compose.yml itself.
+services:
+  caddy-waf:
+    ports:
+      - "993:993/tcp"         # IMAPS: create a TCP listener on container port 993
+      - "10000:10000/udp"     # Example UDP service on container port 10000
+

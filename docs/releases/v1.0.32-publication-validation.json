@@ -1,0 +1,29 @@
+{
+  "version": "1.0.32",
+  "checked_at": "2026-10-22T21:36:39.020925+00:00",
+  "images": [
+    {
+      "image": "ghcr.io/socfortress/waf-caddy:1.0.32",
+      "digest": "sha256:b0ef9260e911e369ebd04873281698932af3818087f72a132172db9b0031feaa",
+      "platform": "linux/amd64",
+      "anonymous_pull_metadata": true
+    },
+    {
+      "image": "ghcr.io/socfortress/waf-admin-api:1.0.32",
+      "digest": "sha256:174268d7271440c2fca78486db0353b0022b67d1c79f991e292a1bce3fd6bda2",
+      "platform": "linux/amd64",
+      "anonymous_pull_metadata": true
+    },
+    {
+      "image": "ghcr.io/socfortress/waf-admin-ui:1.0.32",
+      "digest": "sha256:ca6f37e697cbb9e0244669a95af7e2edb2ba0dd9670c7bcb6f421974ec477242",
+      "platform": "linux/amd64",
+      "anonymous_pull_metadata": true
+    }
+  ],
+  "compose": {
+    "default_ports_unchanged": true,
+    "explicit_override_adds_tcp_993_udp_10000": true,
+    "all_platform_services_pinned": true
+  }
+}
