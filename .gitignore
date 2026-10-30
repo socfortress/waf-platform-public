@@ -13,3 +13,6 @@ GeoLite2-City.mmdb
 # Locally generated mitigation archives and Python bytecode
 rule-packs/*/dist/
 __pycache__/
+
+# Deployment backups contain TLS private keys and ACME account credentials.
+/.waf-backups/

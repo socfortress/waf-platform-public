@@ -192,6 +192,9 @@ Set `WAF_IMAGE_TAG` in `.env` to the desired release without its `v` prefix;
 precedence over a tag: changing only the tag leaves Caddy on its previous digest.
 Upgrade Caddy, the sandbox, API and UI together.
 
+Before recreating a deployment that lacks certificate storage mounts, follow
+[the certificate persistence migration](#persisting-caddy-certificates-when-upgrading).
+
 For v1.0.39, follow the ordered [upgrade steps](docs/releases/v1.0.39.md), including
 starting Caddy before the API synchronizes the saved configuration.
 
@@ -232,3 +235,73 @@ docker compose down -v      # stop AND delete all data volumes — destructive
 - **License:** see [LICENSE](LICENSE).
 - **Issues / questions:** open an issue on this repository
 - Commercial support is available from [SOCFortress](https://www.socfortress.co/solutions/professional-services).
+
+## Persisting Caddy certificates when upgrading
+
+The shipped Compose files mount `caddy-data` at `/data` for ACME accounts,
+certificates and keys, and `caddy-runtime-config` at `/config` for Caddy runtime
+state. These volumes belong only to production Caddy, not the validator or API.
+`caddy-config:/etc/caddy` contains configuration files and is not certificate
+storage. Confirmed-boot configuration remains authoritative; persisting an
+autosave does not enable `--resume` or bypass CRS recovery checks.
+
+**Existing installations must copy their old container's state before recreating
+it with these mounts.** An empty mount hides the old writable layer. Do not run
+`docker compose down`, recreate Caddy, or remove the old container first. A helper
+using only `--volumes-from` cannot back up unmounted writable-layer directories.
+If the original container is already gone, recover certificates from a trusted
+backup; repeated issuance attempts can hit CA rate limits.
+
+During a maintenance window, stop configuration edits and follow these steps
+from your existing Compose directory, preserving its project name and overrides:
+
+```sh
+set -eu
+umask 077
+persist_backup="$PWD/.waf-backups/caddy-persistence-$(date -u +%Y%m%dT%H%M%SZ)"
+mkdir -p "$persist_backup"
+cp -p docker-compose.yml .env "$persist_backup/"
+# Also preserve any Compose override files and the normal database/CRS backups.
+docker compose stop admin-ui admin-api caddy-waf waf-sandbox
+docker cp caddy-waf:/data "$persist_backup/data"
+docker cp caddy-waf:/config "$persist_backup/config"
+test -d "$persist_backup/data/caddy"
+```
+
+Verify the backup contains your expected certificate/account files. It contains
+private keys: keep it private and do not attach it to issues. Keep the old
+container stopped until the copy is verified. If the copy fails, leave the
+container in place and restart the existing deployment while investigating.
+
+Now apply the updated Compose definitions (or add these two mounts and volume
+declarations to your customized file). If you already persist these directories,
+retain the existing volume names/bind paths; do not switch to empty volumes.
+For example, externally managed lab volumes should retain their `external: true`
+and explicit `name` settings. For the source-build installation, build the new
+Caddy image before creating its replacement; public deployments use the matching
+published image pins. Then restore into the stopped replacement:
+
+```sh
+docker compose config --quiet
+docker compose create caddy-waf
+docker cp "$persist_backup/data/." caddy-waf:/data
+docker cp "$persist_backup/config/." caddy-waf:/config
+persist_image=$(docker inspect --format '{{.Image}}' caddy-waf)
+docker run --rm --network none --user 0 --volumes-from caddy-waf \
+  --entrypoint sh "$persist_image" -ec \
+  'chown -R "$(id -u caddy):$(id -g caddy)" /data /config; chmod 700 /data /config'
+docker compose up -d --no-deps --wait caddy-waf waf-sandbox
+docker compose up -d --no-deps --wait admin-api admin-ui
+```
+
+The ownership step accounts for `docker cp` creating root-owned files. New empty
+volumes in freshly built images inherit Caddy ownership and private directory
+permissions. Check HTTPS with certificate verification enabled, confirm expected
+certificate identity, and confirm API/CRS synchronization. Back up both new
+volumes alongside the database, confirmed configuration, CRS and imported
+certificates. Do not delete them with `down -v` or volume pruning when upgrading.
+Custom storage backends or `XDG_DATA_HOME`/`XDG_CONFIG_HOME` overrides need matching
+backup and mount paths rather than the default commands above.
+
+References: [Caddy storage conventions](https://caddyserver.com/docs/conventions#data-directory)
+and [Docker copy behavior](https://docs.docker.com/reference/cli/docker/container/cp/).
