@@ -1,0 +1,107 @@
+{
+  "release": "v1.0.38",
+  "source_revision": "63759ffc713044998f1445769305204d4126a8fe",
+  "image": "ghcr.io/socfortress/waf-caddy@sha256:fae1bcdba35dacd7c7a572653308341dcfb5aa2511a4766adea623339093106f",
+  "runtime": "published linux/amd64 image under Docker emulation on an ARM64 Mac; native fixture clients",
+  "module_confirmed": "http.reverse_proxy.transport.http_ntlm",
+  "results": [
+    {
+      "test": "direct_real_ntlm_handshake",
+      "passed": true
+    },
+    {
+      "test": "standard_http_control",
+      "authenticated": {
+        "status": 200,
+        "http_version": "1.1",
+        "body": {
+          "user": "LAB\\alice",
+          "connection": "f6c278eb56ec43bb8410cce1e7b5fcf6",
+          "path": "/who"
+        }
+      },
+      "subsequent_anonymous": {
+        "status": 200,
+        "http_version": "1.1",
+        "body": {
+          "user": "LAB\\alice",
+          "connection": "f6c278eb56ec43bb8410cce1e7b5fcf6",
+          "path": "/who"
+        }
+      }
+    },
+    {
+      "test": "candidate_valid_invalid_anonymous",
+      "passed": true
+    },
+    {
+      "test": "concurrent_user_isolation",
+      "passed": true,
+      "requests": 32,
+      "connections": 32
+    },
+    {
+      "test": "same_client_connection_reuse",
+      "passed": true
+    },
+    {
+      "test": "closure_reconnect_reload",
+      "passed": true
+    },
+    {
+      "test": "upstream_tls_trust_and_name",
+      "passed": true
+    },
+    {
+      "test": "tolerant_auth_and_persistent_reauthentication",
+      "passed": true,
+      "upstream_tls": false
+    },
+    {
+      "test": "tolerant_auth_and_persistent_reauthentication",
+      "passed": true,
+      "upstream_tls": true
+    },
+    {
+      "test": "real_crs_get_post_blocking",
+      "passed": true
+    },
+    {
+      "test": "frontend_http2_single_client",
+      "result": {
+        "status": 502,
+        "http_version": "2",
+        "body": ""
+      }
+    },
+    {
+      "test": "platform_ntlm_sni_advertises_http1",
+      "passed": true
+    },
+    {
+      "test": "platform_other_site_keeps_http2",
+      "passed": true
+    },
+    {
+      "test": "platform_front_proxy_guard",
+      "passed": true
+    },
+    {
+      "test": "platform_known_proxy_without_forwarded_headers",
+      "passed": true
+    },
+    {
+      "test": "platform_actual_http2_rejected",
+      "passed": true
+    },
+    {
+      "test": "platform_generated_route_auth_and_waf",
+      "passed": true
+    }
+  ],
+  "notes": [
+    "The standard HTTP control deliberately demonstrates unsafe pooling for a connection-bound fixture.",
+    "The raw transport rejects HTTP/2 with 502; platform routes reject it with 421.",
+    "No Windows/IIS or lab deployment claim."
+  ]
+}
