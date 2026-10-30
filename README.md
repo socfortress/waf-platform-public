@@ -7,18 +7,18 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.38 — experimental NTLM compatibility
+## New release: v1.0.39 — path ACL precedence
 
-[v1.0.38](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.38)
-adds an opt-in site setting for NTLM authentication handled by your backend.
-It requires direct HTTP/1.1 clients and one backend; each client connection has
-an isolated upstream transport. Existing sites keep the setting off.
+[v1.0.39](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.39)
+fixes overlapping path ACLs: the most specific matching path policy applies,
+with the blank or `/` rule as the fallback. **Review existing policies before
+upgrading: path rules now override broader rules instead of accumulating them.**
 
-Windows/IIS browser SSO and Extended Protection still need real-environment
-validation. See the [NTLM compatibility guide](docs/ntlm-compatibility.md) and
-[upgrade and rollback notes](docs/releases/v1.0.38.md). Update both the image tag
-and Caddy digest, including the matching CRS validator. Older installations must
-also follow the [v1.0.37 prerequisites](docs/releases/v1.0.37.md).
+See the [upgrade and rollback notes](docs/releases/v1.0.39.md), including
+ambiguous-path handling. Update both the image tag and Caddy digest, including
+the matching CRS validator. Older installations must also follow the
+[v1.0.37 prerequisites](docs/releases/v1.0.37.md). Experimental
+[NTLM compatibility](docs/ntlm-compatibility.md) remains available with its existing limits.
 
 Earlier hostname aliases, upstream identity controls, backend pools,
 [TCP/UDP forwarding](docs/tcp-udp-services.md), and the optional
@@ -192,7 +192,7 @@ Set `WAF_IMAGE_TAG` in `.env` to the desired release without its `v` prefix;
 precedence over a tag: changing only the tag leaves Caddy on its previous digest.
 Upgrade Caddy, the sandbox, API and UI together.
 
-For v1.0.38, follow the ordered [upgrade steps](docs/releases/v1.0.38.md), including
+For v1.0.39, follow the ordered [upgrade steps](docs/releases/v1.0.39.md), including
 starting Caddy before the API synchronizes the saved configuration.
 
 ```bash
