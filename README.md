@@ -7,24 +7,22 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.33 — Enforce HTTPS for TLS sites
+## New release: v1.0.37 — CRS version management
 
-[v1.0.33 is available](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.33)
-with a fix for [issue #28](https://github.com/socfortress/waf-platform-public/issues/28).
-Sites using uploaded certificates or Let's Encrypt now redirect HTTP requests to
-HTTPS with **308 Permanent Redirect**, preserving the path and query string.
-HTTP-only sites remain supported, and ACME HTTP-01 challenges continue to work.
-The redirect is independent of the Security headers / HSTS setting.
+[v1.0.37](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.37)
+adds exact CRS release selection, LTS 4.25.x tracking, signed immutable bundles,
+explicit validation/activation and retained rollback. Tracks recommend updates;
+they never activate rules automatically. This is the first phase of
+[issue #32](https://github.com/socfortress/waf-platform-public/issues/32).
 
-See the [upgrade and rollback instructions](docs/releases/v1.0.33.md), especially
-if an external load balancer currently connects to a TLS-enabled site over HTTP.
-No database migration is added by this release.
+**Update the Compose file as well as the images.** Managed CRS updates require
+confirmed boot storage and a sandbox pinned to the same Caddy image digest.
+Follow the [upgrade and rollback guide](docs/releases/v1.0.37.md) and
+[CRS management/recovery instructions](docs/crs-version-management.md).
 
-This includes the [TCP/UDP forwarding](docs/tcp-udp-services.md) from v1.0.32,
-with [explicit Docker port publishing](docker-compose.streams.example.yml),
-and the Coraza security upgrade and optional
-[PHP2Shell mitigation pack](rule-packs/php2shell/README.md) from v1.0.31.
-The pack remains opt-in; upgrading images does not enable its rules.
+Earlier hostname aliases, upstream identity controls, backend pools,
+[TCP/UDP forwarding](docs/tcp-udp-services.md), and the optional
+[PHP2Shell mitigation pack](rule-packs/php2shell/README.md) remain available.
 
 To receive future release notifications, use **Watch → Custom → Releases** on
 [this public repository](https://github.com/socfortress/waf-platform-public),
@@ -189,7 +187,13 @@ Read the [public release notes](https://github.com/socfortress/waf-platform-publ
 for compatibility changes and back up your database, rules and deployment settings.
 Update the deployment files with `git pull --ff-only`, preserving local customizations.
 Set `WAF_IMAGE_TAG` in `.env` to the desired release without its `v` prefix;
-`latest` follows new image publications. Upgrade Caddy, the sandbox, API and UI together.
+`latest` follows new image publications. For managed CRS activation, also update
+`CRS_CADDY_DIGEST` to the Caddy digest in that release's notes. A digest pin takes
+precedence over a tag: changing only the tag leaves Caddy on its previous digest.
+Upgrade Caddy, the sandbox, API and UI together.
+
+For v1.0.37, follow the ordered [upgrade steps](docs/releases/v1.0.37.md), including
+starting Caddy before the API synchronizes the saved configuration.
 
 ```bash
 docker compose pull        # fetch the latest images (or your pinned WAF_IMAGE_TAG)

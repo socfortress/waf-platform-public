@@ -17,7 +17,7 @@ services:
   # Caddy + Coraza: WAF engine and reverse proxy
   # ---------------------------------------------------------------------------
   caddy-waf:
-    image: ghcr.io/socfortress/waf-caddy:${WAF_IMAGE_TAG:-latest}
+    image: ghcr.io/socfortress/waf-caddy:${WAF_IMAGE_TAG:-latest}${CRS_CADDY_DIGEST:+@${CRS_CADDY_DIGEST}}
     container_name: caddy-waf
     ports:
       - "80:80"
@@ -30,9 +30,13 @@ services:
       - coraza-rules:/etc/coraza/rules
       - caddy-config:/etc/caddy
       - coraza-custom:/etc/coraza/custom
-      - crs-data:/etc/coraza/crs-rules         # live CRS dir (seeded by admin-api)
+      - crs-data:/etc/coraza/crs-rules:ro      # immutable bundles, seeded by admin-api
+      - config-state:/etc/coraza/config-state:ro
       - coraza-logs:/var/log/coraza
       - reputation-data:/etc/reputation:ro     # locally matched feed snapshot
+    environment:
+      CONFIG_STATE_ENABLED: "true"
+      CONFIG_RECOVERY_ONLY: ${CONFIG_RECOVERY_ONLY:-false}
     networks:
       - waf-internal
     depends_on:
@@ -54,11 +58,11 @@ services:
   # ---------------------------------------------------------------------------
   # Rule testing sandbox (Rules → Sandbox): a second Caddy + Coraza that only
   # answers test requests from the admin API. It never proxies anywhere, has no
-  # published ports, and testing never reloads caddy-waf. Optional — without it
-  # the Sandbox reports itself unavailable and nothing else is affected.
+  # published ports, and testing never reloads caddy-waf. Required for managed
+  # CRS activation; existing WAF traffic continues without it.
   # ---------------------------------------------------------------------------
   waf-sandbox:
-    image: ghcr.io/socfortress/waf-caddy:${WAF_IMAGE_TAG:-latest}
+    image: ghcr.io/socfortress/waf-caddy:${WAF_IMAGE_TAG:-latest}${CRS_CADDY_DIGEST:+@${CRS_CADDY_DIGEST}}
     container_name: waf-sandbox
     # Start empty; the admin API pushes the config for each test.
     command: ["caddy", "run"]
@@ -100,6 +104,10 @@ services:
   admin-api:
     image: ghcr.io/socfortress/waf-admin-api:${WAF_IMAGE_TAG:-latest}
     container_name: admin-api
+    environment:
+      CONFIG_STATE_ENABLED: "true"
+      CRS_PRODUCTION_DIGEST: ${CRS_CADDY_DIGEST:-}
+      CRS_VALIDATOR_DIGEST: ${CRS_CADDY_DIGEST:-}
     env_file: .env
     volumes:
       - tls-certs:/certs                       # shared TLS cert volume (see admin-ui)
@@ -111,6 +119,7 @@ services:
       - caddy-config:/etc/caddy
       - coraza-custom:/etc/coraza/custom
       - crs-data:/etc/coraza/crs-rules         # live CRS dir (seeded from image bundle)
+      - config-state:/etc/coraza/config-state
       - coraza-logs:/var/log/coraza
       - reputation-data:/etc/reputation        # atomically published feed snapshot
     networks:
@@ -226,6 +235,7 @@ volumes:
   coraza-logs:
   caddy-config:
   crs-data:
+  config-state:
   geoip-data:
   postgres-data:
   redis-data:
