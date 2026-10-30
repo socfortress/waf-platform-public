@@ -29,6 +29,9 @@ services:
     volumes:
       - coraza-rules:/etc/coraza/rules
       - caddy-config:/etc/caddy
+      # ACME accounts/certificates and Caddy runtime state must survive recreation.
+      - caddy-data:/data
+      - caddy-runtime-config:/config
       - coraza-custom:/etc/coraza/custom
       - crs-data:/etc/coraza/crs-rules:ro      # immutable bundles, seeded by admin-api
       - config-state:/etc/coraza/config-state:ro
@@ -234,6 +237,8 @@ volumes:
   coraza-custom:
   coraza-logs:
   caddy-config:
+  caddy-data:
+  caddy-runtime-config:
   crs-data:
   config-state:
   geoip-data:
