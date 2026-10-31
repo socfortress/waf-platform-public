@@ -7,18 +7,20 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.39 — path ACL precedence
+## New release: v1.0.40 — ACL labels and country allowlists
 
-[v1.0.39](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.39)
-fixes overlapping path ACLs: the most specific matching path policy applies,
-with the blank or `/` rule as the fallback. **Review existing policies before
-upgrading: path rules now override broader rules instead of accumulating them.**
+[v1.0.40](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.40)
+adds labels for ACL entries, an allow-only-selected-countries policy, clearer
+actor/ACL audit records, and optional empty HTTP 403 responses for ACL/geo denials.
+It also includes the Caddy certificate persistence fix.
 
-See the [upgrade and rollback notes](docs/releases/v1.0.39.md), including
-ambiguous-path handling. Update both the image tag and Caddy digest, including
-the matching CRS validator. Older installations must also follow the
+Read the [upgrade and rollback notes](docs/releases/v1.0.40.md), including the
+certificate-storage migration and resetting country allow mode before reverting
+to older binaries. Update both the image tag and Caddy digest, including the
+matching CRS validator. Older installations must also review the
+[v1.0.39 path ACL changes](docs/releases/v1.0.39.md) and
 [v1.0.37 prerequisites](docs/releases/v1.0.37.md). Experimental
-[NTLM compatibility](docs/ntlm-compatibility.md) remains available with its existing limits.
+[NTLM compatibility](docs/ntlm-compatibility.md) retains its existing limits.
 
 Earlier hostname aliases, upstream identity controls, backend pools,
 [TCP/UDP forwarding](docs/tcp-udp-services.md), and the optional
@@ -195,7 +197,7 @@ Upgrade Caddy, the sandbox, API and UI together.
 Before recreating a deployment that lacks certificate storage mounts, follow
 [the certificate persistence migration](#persisting-caddy-certificates-when-upgrading).
 
-For v1.0.39, follow the ordered [upgrade steps](docs/releases/v1.0.39.md), including
+For v1.0.40, follow the ordered [upgrade steps](docs/releases/v1.0.40.md), including
 starting Caddy before the API synchronizes the saved configuration.
 
 ```bash
