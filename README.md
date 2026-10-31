@@ -7,24 +7,27 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.40 — ACL labels and country allowlists
+## New release: v1.0.41 — security hardening
 
-[v1.0.40](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.40)
-adds labels for ACL entries, an allow-only-selected-countries policy, clearer
-actor/ACL audit records, and optional empty HTTP 403 responses for ACL/geo denials.
-It also includes the Caddy certificate persistence fix.
+[v1.0.41](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.41)
+is a security release. It updates vulnerable admin API and UI dependencies,
+replaces the JWT library used for admin sessions and per-site JWT
+authentication, and fixes a regular-expression denial-of-service in exclusion
+matching. There are no database migrations or Compose changes.
 
-Read the [upgrade and rollback notes](docs/releases/v1.0.40.md), including the
-certificate-storage migration and resetting country allow mode before reverting
-to older binaries. Update both the image tag and Caddy digest, including the
-matching CRS validator. Older installations must also review the
-[v1.0.39 path ACL changes](docs/releases/v1.0.39.md) and
-[v1.0.37 prerequisites](docs/releases/v1.0.37.md). Experimental
-[NTLM compatibility](docs/ntlm-compatibility.md) retains its existing limits.
+Read the [upgrade notes](docs/releases/v1.0.41.md) before upgrading: per-site JWT
+authentication now rejects tokens without an `aud` claim when an audience is
+configured, and exclusion regexes must be valid RE2. Update both the image tag
+and Caddy digest. Upgrading from v1.0.39 or older? Also review the
+[v1.0.40 notes](docs/releases/v1.0.40.md), including its certificate-storage
+migration, plus the [v1.0.39 path ACL changes](docs/releases/v1.0.39.md) and
+[v1.0.37 prerequisites](docs/releases/v1.0.37.md).
 
-Earlier hostname aliases, upstream identity controls, backend pools,
+ACL labels and country allowlists ([v1.0.40](docs/releases/v1.0.40.md)),
+hostname aliases, upstream identity controls, backend pools,
 [TCP/UDP forwarding](docs/tcp-udp-services.md), and the optional
 [PHP2Shell mitigation pack](rule-packs/php2shell/README.md) remain available.
+Experimental [NTLM compatibility](docs/ntlm-compatibility.md) retains its existing limits.
 
 To receive future release notifications, use **Watch → Custom → Releases** on
 [this public repository](https://github.com/socfortress/waf-platform-public),
