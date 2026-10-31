@@ -7,20 +7,22 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.41 — security hardening
+## New release: v1.0.42 — update notifications
 
-[v1.0.41](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.41)
-is a security release. It updates vulnerable admin API and UI dependencies,
-replaces the JWT library used for admin sessions and per-site JWT
-authentication, and fixes a regular-expression denial-of-service in exclusion
-matching. There are no database migrations or Compose changes.
+[v1.0.42](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.42)
+lets the admin UI tell you when a newer WAF release is available: admins see a
+banner after signing in, and the About page shows the latest release. The admin
+API checks this repository's releases at most once every 6 hours; set
+`UPDATE_CHECK_ENABLED=false` on hosts without internet access. There are no
+database migrations or Compose changes.
 
-Read the [upgrade notes](docs/releases/v1.0.41.md) before upgrading: per-site JWT
-authentication now rejects tokens without an `aud` claim when an audience is
-configured, and exclusion regexes must be valid RE2. Update both the image tag
-and Caddy digest. Upgrading from v1.0.39 or older? Also review the
+Read the [upgrade notes](docs/releases/v1.0.42.md) and update both the image tag
+and Caddy digest. Upgrading from v1.0.40 or older? Also review the
+[v1.0.41 security release](docs/releases/v1.0.41.md), which changed per-site JWT
+audience handling and exclusion regex validation, and the
 [v1.0.40 notes](docs/releases/v1.0.40.md), including its certificate-storage
-migration, plus the [v1.0.39 path ACL changes](docs/releases/v1.0.39.md) and
+migration. Older installations must also review the
+[v1.0.39 path ACL changes](docs/releases/v1.0.39.md) and
 [v1.0.37 prerequisites](docs/releases/v1.0.37.md).
 
 ACL labels and country allowlists ([v1.0.40](docs/releases/v1.0.40.md)),
