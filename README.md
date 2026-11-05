@@ -7,15 +7,15 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.43 — WAF Logs host filter
+## New release: v1.0.44 — Explicit SMTP security
 
-[v1.0.43](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.43)
-adds a Host filter to WAF Logs, including the live feed. Matching is exact and
-case-insensitive; include the port when present in the event's Host value.
-Changing the host resets pagination and clears the previous live-feed results.
-There are no database migrations or Compose changes.
+[v1.0.44](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.44)
+adds explicit STARTTLS, implicit TLS, and plaintext SMTP modes, independently of
+authentication. Certificate verification stays enabled, with optional private CA
+support. Existing unauthenticated plaintext relays must explicitly set
+`SMTP_SECURITY=none` or enable STARTTLS before upgrading. There are no database migrations.
 
-Read the [upgrade notes](docs/releases/v1.0.43.md) and update both the image tag
+Read the [upgrade notes](docs/releases/v1.0.44.md) and update both the image tag
 and Caddy digest. Upgrading from v1.0.40 or older? Also review the
 [v1.0.41 security release](docs/releases/v1.0.41.md), which changed per-site JWT
 audience handling and exclusion regex validation, and the
@@ -111,7 +111,7 @@ Edit `.env` and replace every `CHANGE_ME` value:
 | `BOOTSTRAP_ADMIN_PASSWORD` | First superadmin password | Strong password — **change after first login** |
 | `ALLOWED_ORIGINS` | CORS origins | `https://localhost:8443` for the default local deploy |
 
-Optional — email alerts: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`.
+Optional — email alerts: `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURITY`, `SMTP_CA_BUNDLE`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM`. See [SMTP configuration](docs/smtp.md) for security modes, optional credentials, and private CA setup.
 
 Optional — pin a version: set `WAF_IMAGE_TAG` to a version number from [Releases](https://github.com/socfortress/waf-platform-public/releases), without the `v` prefix (e.g. `1.0.33` for release `v1.0.33`), instead of `latest`.
 
