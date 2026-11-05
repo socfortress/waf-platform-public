@@ -7,16 +7,15 @@ management API, and a **React** dashboard.
 This repository contains everything you need to **run** the platform from
 prebuilt container images — no source build required.
 
-## New release: v1.0.42 — update notifications
+## New release: v1.0.43 — WAF Logs host filter
 
-[v1.0.42](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.42)
-lets the admin UI tell you when a newer WAF release is available: admins see a
-banner after signing in, and the About page shows the latest release. The admin
-API checks this repository's releases at most once every 6 hours; set
-`UPDATE_CHECK_ENABLED=false` on hosts without internet access. There are no
-database migrations or Compose changes.
+[v1.0.43](https://github.com/socfortress/waf-platform-public/releases/tag/v1.0.43)
+adds a Host filter to WAF Logs, including the live feed. Matching is exact and
+case-insensitive; include the port when present in the event's Host value.
+Changing the host resets pagination and clears the previous live-feed results.
+There are no database migrations or Compose changes.
 
-Read the [upgrade notes](docs/releases/v1.0.42.md) and update both the image tag
+Read the [upgrade notes](docs/releases/v1.0.43.md) and update both the image tag
 and Caddy digest. Upgrading from v1.0.40 or older? Also review the
 [v1.0.41 security release](docs/releases/v1.0.41.md), which changed per-site JWT
 audience handling and exclusion regex validation, and the
