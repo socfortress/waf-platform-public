@@ -1,0 +1,38 @@
+[
+  {
+    "image": "ghcr.io/socfortress/waf-caddy:1.0.45",
+    "digest": "sha256:22f786457dd6d9b6335ec8a8b997a4a874f51da8b2d78874f1cdadc1b580417e",
+    "platform": "linux/amd64",
+    "revision": "421da4f46336e64c4d1176600d42fe108901d9d2",
+    "version": "1.0.45",
+    "anonymous_manifest_and_config_access": true,
+    "matching_aliases": [
+      "latest",
+      "1.0"
+    ]
+  },
+  {
+    "image": "ghcr.io/socfortress/waf-admin-api:1.0.45",
+    "digest": "sha256:ed5b891020851972fdb13863c40f3631ac24a624da7ff6f5e2a4952b819f60f9",
+    "platform": "linux/amd64",
+    "revision": "421da4f46336e64c4d1176600d42fe108901d9d2",
+    "version": "1.0.45",
+    "anonymous_manifest_and_config_access": true,
+    "matching_aliases": [
+      "latest",
+      "1.0"
+    ]
+  },
+  {
+    "image": "ghcr.io/socfortress/waf-admin-ui:1.0.45",
+    "digest": "sha256:deb7307a739344dc43a1485ac1fcb1cd15fcc4bbb90fd5cbbef892014a28f30c",
+    "platform": "linux/amd64",
+    "revision": "421da4f46336e64c4d1176600d42fe108901d9d2",
+    "version": "1.0.45",
+    "anonymous_manifest_and_config_access": true,
+    "matching_aliases": [
+      "latest",
+      "1.0"
+    ]
+  }
+]
